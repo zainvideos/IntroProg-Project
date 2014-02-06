@@ -1,0 +1,40 @@
+﻿<html>
+<head><title>JavaScript Adventure Game</title>
+<script type="text/javascript">
+window.test = function () {
+    return "works";
+}
+
+function augment(withFn) {
+    var name, fn;
+    for (name in window) {
+        fn = window[name];
+        if (typeof fn === 'function') {
+            window[name] = (function(name, fn) {
+                var args = arguments;
+                return function() {
+                    withFn.apply(this, args);
+                    return fn.apply(this, arguments);
+                }
+            })(name, fn);
+        }
+    }
+}
+
+augment(function(name, fn) {
+    console.log("Time for some super duper " + name);
+});
+
+
+</script>
+<script type="text/javascript">
+alert("Hey. so...... ok bye.");
+</script>
+
+</head>
+<body><center>
+<h1>JavaScript Adventure Game</h1><br>
+Page under construction...
+
+</body>
+</html>
